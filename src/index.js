@@ -1,12 +1,30 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import AppHeader from "./components/app-header";
+import SearchPanel from "./components/search-panel";
+import ToDoList from "./components/todo-list";
+import SignIn from './components/SignIn'
+import Container from '@material-ui/core/Container';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
-ReactDOM.render(<App />, document.getElementById('root'));
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const App = () => {
+  const todoData = [
+    { label: "drink coffee", important: false, id: 1 },
+    { label: "make awesome app", important: true, id: 2 },
+    { label: "have a lunch", important: false, id: 3 }
+  ];
+
+  return (
+      <Container component="main" maxWidth="xs">
+              <CssBaseline />
+
+      <SignIn />
+      <AppHeader />
+      <SearchPanel />
+      <ToDoList todos = {todoData}/>
+      </Container>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById("root"));
