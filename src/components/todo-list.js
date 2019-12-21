@@ -3,21 +3,10 @@ import React from "react";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import Avatar from "@material-ui/core/Avatar";
-import FolderIcon from "@material-ui/icons/Folder";
 import ListItemText from "@material-ui/core/ListItemText";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import "./todo-list.css";
-
-// function generate(todos) {
-//   return todos.map(value =>
-//     React.cloneElement(element, {
-//       key: value,
-//     }),
-//   );
-// }
 
 const ToDoList = ({ todos }) => {
   const [dense] = React.useState(false);
@@ -26,12 +15,7 @@ const ToDoList = ({ todos }) => {
   const elements = todos.map(item => {
     const { id, label } = item;
     return (
-      <ListItem key={id}>
-        <ListItemAvatar>
-          <Avatar>
-            <FolderIcon />
-          </Avatar>
-        </ListItemAvatar>
+      <ListItem key={id} button dense>
         <ListItemText
           primary={label}
           // secondary={secondary ? "Secondary text" : null}
@@ -42,10 +26,6 @@ const ToDoList = ({ todos }) => {
           </IconButton>
         </ListItemSecondaryAction>
       </ListItem>
-
-      // <li className="" key={id}>
-      //   <ToDoListItem {...itemProps} />
-      // </li>
     );
   });
   return <List dense={dense}>{elements}</List>;
