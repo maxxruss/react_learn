@@ -1,5 +1,5 @@
 import React from "react";
-import ToDoListItem from "./todo-list-item";
+import ToDoListItem from "../todo-list-item";
 import List from "@material-ui/core/List";
 import "./todo-list.css";
 
@@ -8,7 +8,7 @@ const ToDoList = ({ todos }) => {
   const elements = todos.map(item => {
     const { id, label } = item;
     return (
-     <ToDoListItem id={id} label={label}/>
+     <ToDoListItem key={id} label={label}/>
     );
   });
   return <List dense={dense}>{elements}</List>;
