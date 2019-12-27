@@ -1,11 +1,11 @@
 import React from "react";
 import './app.css'
+import { makeStyles } from "@material-ui/core/styles";
 import AppHeader from "../app-header";
 import SearchPanel from "../search-panel";
 import FilterButtons from "../filterButtons";
 import ToDoList from "../todo-list";
 import Container from "@material-ui/core/Container";
-import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 const useStyles = makeStyles(theme => ({
