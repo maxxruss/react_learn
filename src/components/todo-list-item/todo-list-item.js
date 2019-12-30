@@ -10,10 +10,10 @@ import "./todo-list-item.css";
 
 const styles = {
   margin: {
-    margin: '10px'
+    margin: "10px"
   },
   extendedIcon: {
-    marginRight: '10px'
+    marginRight: "10px"
   }
 };
 
@@ -25,13 +25,30 @@ class ToDoListItem extends React.Component {
       important: false
     };
   }
+
+  onlabelClick = () => {
+    this.setState(({done}) => {
+      return {
+        done:  !done
+      };
+    });
+  };
+
+  onMarkImportant = () => {
+    this.setState(({important}) => {
+      return {
+        important:  !important
+      };
+    });
+  };
+
   render() {
     const { classes } = this.props;
-    const {id, label} = this.props;
+    const { id, label } = this.props;
     const { done, important } = this.state;
     // const style = {
     //   color: important ? "tomato" : "black"
-    // };    
+    // };
 
     let classText = "";
     if (done) {
@@ -46,8 +63,16 @@ class ToDoListItem extends React.Component {
     }
 
     return (
-      <ListItem key={id} button dense onClick={() => this.setState({done: !done})}>
-        <ListItemText className={classText + ' ' + classWeight} primary={label} />
+      <ListItem
+        key={id}
+        button
+        dense
+        onClick={this.onlabelClick}
+      >
+        <ListItemText
+          className={classText + " " + classWeight}
+          primary={label}
+        />
         <ListItemSecondaryAction>
           <Button
             variant="outlined"
@@ -62,7 +87,7 @@ class ToDoListItem extends React.Component {
             size="small"
             color="secondary"
             className={classes.margin}
-            onClick={() => this.setState({important: !important})}
+            onClick={this.onMarkImportant}
           >
             <PriorityHighOutlinedIcon />
           </Button>
@@ -72,11 +97,9 @@ class ToDoListItem extends React.Component {
   }
 }
 
-
-
 // const ToDoListItem = ({ id, label, important = false }) => {
 //   let [done, setDone] = React.useState(false);
-  
+
 //   let className = "";
 //   if (done) {
 //     console.log(done);
@@ -88,7 +111,7 @@ class ToDoListItem extends React.Component {
 //   const style = {
 //     color: important ? "tomato" : "black"
 //   };
-  
+
 // };
 
 export default withStyles(styles)(ToDoListItem);

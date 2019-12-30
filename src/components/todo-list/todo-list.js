@@ -8,7 +8,7 @@ const ToDoList = ({ todos }) => {
   const elements = todos.map(item => {
     const { id, label } = item;
     return (
-     <ToDoListItem key={id} label={label}/>
+     <ToDoListItem key={id} label={label} onDeleted = {()=> console.log('Deleted')}/>
     );
   });
   return <List dense={dense}>{elements}</List>;
