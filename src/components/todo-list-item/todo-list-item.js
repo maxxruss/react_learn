@@ -6,7 +6,6 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Button from "@material-ui/core/Button";
 import DeleteOutlineOutlinedIcon from "@material-ui/icons/DeleteOutlineOutlined";
 import PriorityHighOutlinedIcon from "@material-ui/icons/PriorityHighOutlined";
-import "./todo-list-item.css";
 
 const styles = {
   margin: {
@@ -27,24 +26,23 @@ class ToDoListItem extends React.Component {
   }
 
   onlabelClick = () => {
-    this.setState(({done}) => {
+    this.setState(({ done }) => {
       return {
-        done:  !done
+        done: !done
       };
     });
   };
 
   onMarkImportant = () => {
-    this.setState(({important}) => {
+    this.setState(({ important }) => {
       return {
-        important:  !important
+        important: !important
       };
     });
   };
 
   render() {
-    const { classes } = this.props;
-    const { id, label } = this.props;
+    const { classes, id, label, onDeleted } = this.props;
     const { done, important } = this.state;
     // const style = {
     //   color: important ? "tomato" : "black"
@@ -63,12 +61,7 @@ class ToDoListItem extends React.Component {
     }
 
     return (
-      <ListItem
-        key={id}
-        button
-        dense
-        onClick={this.onlabelClick}
-      >
+      <ListItem key={id} button dense onClick={this.onlabelClick}>
         <ListItemText
           className={classText + " " + classWeight}
           primary={label}
@@ -79,6 +72,7 @@ class ToDoListItem extends React.Component {
             size="small"
             color="primary"
             className={classes.margin}
+            onClick={onDeleted}
           >
             <DeleteOutlineOutlinedIcon />
           </Button>

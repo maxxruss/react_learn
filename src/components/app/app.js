@@ -1,5 +1,4 @@
 import React from "react";
-import './app.css'
 import { makeStyles } from "@material-ui/core/styles";
 import AppHeader from "../app-header";
 import SearchPanel from "../search-panel";
@@ -39,7 +38,7 @@ const App = () => {
           <FilterButtons />
         </div>
       </div>
-      <ToDoList todos={todoData} />
+      <ToDoList todos={todoData} onDeleted={(id)=> console.log(id)}/>
     </Container>
   );
 };
