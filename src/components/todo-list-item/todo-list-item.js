@@ -44,10 +44,7 @@ class ToDoListItem extends React.Component {
   render() {
     const { classes, id, label, onDeleted } = this.props;
     const { done, important } = this.state;
-    // const style = {
-    //   color: important ? "tomato" : "black"
-    // };
-
+    
     let classText = "";
     if (done) {
       console.log(done);
@@ -90,22 +87,5 @@ class ToDoListItem extends React.Component {
     );
   }
 }
-
-// const ToDoListItem = ({ id, label, important = false }) => {
-//   let [done, setDone] = React.useState(false);
-
-//   let className = "";
-//   if (done) {
-//     console.log(done);
-//     className = "done";
-//   }
-
-//   console.log(className);
-
-//   const style = {
-//     color: important ? "tomato" : "black"
-//   };
-
-// };
 
 export default withStyles(styles)(ToDoListItem);
