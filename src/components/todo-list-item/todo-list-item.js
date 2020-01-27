@@ -17,48 +17,32 @@ const styles = {
 };
 
 class ToDoListItem extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      done: false,
-      important: false
-    };
-  }
-
-  onlabelClick = () => {
-    this.setState(({ done }) => {
-      return {
-        done: !done
-      };
-    });
-  };
-
-  onMarkImportant = () => {
-    this.setState(({ important }) => {
-      return {
-        important: !important
-      };
-    });
-  };
-
   render() {
-    const { classes, id, label, onDeleted } = this.props;
-    const { done, important } = this.state;
-    
+    const {
+      classes,
+      id,
+      label,
+      done,
+      important,
+      onDeleted,
+      onToggleImportant,
+      onToggleDone
+    } = this.props;
+
     let classText = "";
     if (done) {
-      console.log(done);
+      // console.log(done);
       classText = "done";
     }
 
     let classWeight = "";
     if (important) {
-      console.log(important);
+      // console.log(important);
       classWeight = "important";
     }
 
     return (
-      <ListItem key={id} button dense onClick={this.onlabelClick}>
+      <ListItem key={id} button dense onClick={onToggleDone}>
         <ListItemText
           className={classText + " " + classWeight}
           primary={label}
@@ -78,7 +62,7 @@ class ToDoListItem extends React.Component {
             size="small"
             color="secondary"
             className={classes.margin}
-            onClick={this.onMarkImportant}
+            onClick={onToggleImportant}
           >
             <PriorityHighOutlinedIcon />
           </Button>

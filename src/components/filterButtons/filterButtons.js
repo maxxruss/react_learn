@@ -14,18 +14,7 @@ const styles = {
 };
 
 class FilterButtons extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      done: false,
-      important: false
-    };
-  }
-
-  // const classes = useStyles();
-
   render() {
-    const{onAdd} = this.props
     return (
       <div className={styles.root}>
         <ButtonGroup
@@ -37,7 +26,6 @@ class FilterButtons extends React.Component {
           <Button>All</Button>
           <Button>Active</Button>
           <Button>Done</Button>
-          <Button onClick={onAdd}>Add</Button>
         </ButtonGroup>
       </div>
     );
