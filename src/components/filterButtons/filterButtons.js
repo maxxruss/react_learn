@@ -14,7 +14,25 @@ const styles = {
 };
 
 class FilterButtons extends React.Component {
+  buttons = [
+    { name: "all", label: "All" },
+    { name: "active", label: "active" },
+    { name: "done", label: "done" }
+  ];
+
   render() {
+    const {switchFilter} = this.props;
+    const buttons = this.buttons.map(({ name, label }) => {
+      // const isActive = filter === name;
+      return (
+        <Button
+          onClick={()=>switchFilter(name)}
+          key={name}
+        >
+          {label}
+        </Button>
+      );
+    });
     return (
       <div className={styles.root}>
         <ButtonGroup
@@ -23,9 +41,7 @@ class FilterButtons extends React.Component {
           color="primary"
           aria-label="outlined primary button group"
         >
-          <Button>All</Button>
-          <Button>Active</Button>
-          <Button>Done</Button>
+          {buttons}
         </ButtonGroup>
       </div>
     );

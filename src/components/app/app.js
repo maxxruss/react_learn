@@ -31,8 +31,9 @@ class App extends Component {
         this.createTodoItem("drink coffee"),
         this.createTodoItem("make awesome app"),
         this.createTodoItem("have a lunch")
-      ],     
-      searchText: ""
+      ],
+      searchText: "",
+      filter: ""
     };
   }
   createTodoItem(label) {
@@ -95,18 +96,36 @@ class App extends Component {
     const newArray = this.state.todoData.filter(i => {
       return searchText === "" || i.label.indexOf(searchText) !== -1;
     });
-    console.log(searchText)
-    return newArray;   
+    // console.log(searchText);
+    return newArray;
   };
 
-  setSearchText = (searchText) => {
-    this.setState({searchText})
-  }
+  setSearchText = searchText => {
+    this.setState({ searchText });
+  };
+
+  filter = (items, filter) => {
+    switch (filter) {
+      case "all":
+        return items;
+      case "done":
+        return items.filter(i => i.done);
+      case "active":
+        return items.filter(i => !i.done);
+      default:
+        return items;
+    }
+  };
+
+  switchFilter = filter => {
+    this.setState({ filter });
+  };
+
   render() {
     const { classes } = this.props;
-    const { todoData, searchText } = this.state;
+    const { todoData, searchText, filter} = this.state;
     const doneCount = todoData.filter(el => el.done).length;
-    const todoDataFiltered = this.searchItem(searchText);
+    const todoDataFiltered = this.filter(this.searchItem(searchText), filter);
     const todoCount = todoData.length - doneCount;
     return (
       <Container component="main" maxWidth="sm">
@@ -115,7 +134,7 @@ class App extends Component {
         <div className={classes.search_wrap}>
           <SearchPanel setSearchText={this.setSearchText} />
           <div className={classes.button_group}>
-            <FilterButtons />
+            <FilterButtons switchFilter={this.switchFilter}  filter={filter} />
           </div>
         </div>
         <ToDoList
